@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="HealthGrid - Sistema inteligente de gestão hospitalar" />
+
+    {% if titulo %}
+    <title>{{ titulo }} - HealthGrid</title>
+    {% else %}
+    <title>HealthGrid - Sistema de Gestão Hospitalar</title>
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/sweetalert2.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- jQuery and Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .limitador {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background:#073763;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: white;
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .conteudo {
+            flex: 1;
+            padding: 2rem 0;
+        }
+
+        .rodape {
+            background-color: var(--light-bg);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .link-rodape {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .link-rodape:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .link-rodape img {
+            transition: var(--transition);
+        }
+
+        .link-rodape:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .conteudo {
+                padding: 1rem 0;
+            }
+
+            .rodape {
+                padding: 1rem 0;
+            }
+        }
+
+        /* Animações globais */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .login-button {
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.login-button:hover {
+    background: var(--primary-dark);
+}
+    </style>
+
+    {% block head %}{% endblock %}
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/static/js/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="/static/js/projeto.js"></script>
+</head>
+<body>
+    <div class="limitador">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <i class="fas fa-hospital-alt mr-2"></i>
+                    HealthGrid
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sobre">Sobre</a>
+                        </li>
+                         <li class="nav-item">
+                          <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="conteudo fade-in">
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer class="rodape">
+            <div class="container">
+                <a class="link-rodape" href="https://sistemasdeinformacao.espm.edu.br" target="_blank">
+                    <small>Desenvolvido em 2025 pelo curso de Sistemas de Informação da ESPM</small>
+                    <br/>
+                    <img src="/static/img/logo-si-512.png" style="width: 100%; max-width: 150px;" alt="Logo SI ESPM" />
+                </a>
+            </div>
+        </footer>
+
+        {% block rodape %}{% endblock %}
+    </div>
+</body>
+</html>

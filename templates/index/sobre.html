@@ -1,0 +1,278 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<style>
+    .about-hero {
+        background:#073763;
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+        border-radius: 15px;
+        margin-bottom: 50px;
+    }
+
+    .about-section {
+        padding: 60px 0;
+    }
+
+    .mission-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .mission-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .mission-icon {
+        font-size: 2.5em;
+        color: #3498db;
+        margin-bottom: 20px;
+    }
+
+    .team-section {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+        border-radius: 15px;
+        margin: 50px 0;
+    }
+
+    .team-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .team-member-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        object-fit: cover;
+        border: 3px solid #3498db;
+    }
+
+    .team-member-social {
+        margin-top: 15px;
+    }
+
+    .team-member-social a {
+        color: #3498db;
+        margin: 0 10px;
+        font-size: 1.2em;
+        transition: color 0.3s;
+    }
+
+    .team-member-social a:hover {
+        color: #2c3e50;
+    }
+
+    .tech-stack {
+        padding: 60px 0;
+    }
+
+    .tech-item {
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    .tech-icon {
+        font-size: 2em;
+        color: #073763;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .about-hero {
+            padding: 40px 0;
+        }
+
+        .about-hero h1 {
+            font-size: 1.8em;
+        }
+
+        .mission-card, .team-card {
+            margin-bottom: 20px;
+        }
+
+        .team-member-img {
+            width: 120px;
+            height: 120px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<main class="container">
+    <section class="about-hero">
+        <div class="container">
+            <h1>Sobre o HealthGrid</h1>
+            <p class="lead">Transformando o atendimento médico através da tecnologia</p>
+        </div>
+    </section>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<section class="about-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-bullseye fa-1x"></i></div>
+                    <h3>Nossa Missão</h3>
+                    <p>Otimizar o sistema de saúde através de tecnologia inovadora, facilitando o acesso a informações em tempo real sobre disponibilidade de leitos hospitalares.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-eye fa-1x"></i></div>
+                    <h3>Nossa Visão</h3>
+                    <p>Ser referência em soluções tecnológicas para gestão hospitalar, contribuindo para um sistema de saúde mais eficiente e acessível.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mission-card">
+                    <div class="mission-icon"><i class="fas fa-star fa-1x"></i></div>
+                    <h3>Nossos Valores</h3>
+                    <p>Inovação, transparência, compromisso com a excelência e foco no bem-estar dos pacientes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="team-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossa Equipe</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="/static/img/napoles.jpg" alt="Membro da Equipe" class="team-member-img">
+                        <h3>Artur Napoles</h3>
+                        <p class="text-muted">Desenvolvedor Full Stack</p>
+                        <p>Especialista em desenvolvimento web e arquitetura de sistemas.</p>
+                        <div class="team-member-social">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="/static/img/ycaro.jpg" alt="Membro da Equipe" class="team-member-img">
+                        <h3>Ycaro Campovilla</h3>
+                        <p class="text-muted">UX/UI Designer</p>
+                        <p>Responsável pelo design de interface e experiência do usuário.</p>
+                        <div class="team-member-social">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="/static/img/enrico.jpg"" alt="Membro da Equipe" class="team-member-img">
+                        <h3>Enrico Digioia</h3>
+                        <p class="text-muted">Especialista em Dados</p>
+                        <p>Focado em análise de dados e visualização de informações.</p>
+                        <div class="team-member-social">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="/static/img/borba.jpg"" alt="Membro da Equipe" class="team-member-img">
+                        <h3>Arthur Borba</h3>
+                        <p class="text-muted">Desenvolvedor Full Stack</p>
+                        <p>Especialista em desenvolvimento web e arquitetura de sistemas.</p>
+                        <div class="team-member-social">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="/static/img/enzo.jpg"" alt="Membro da Equipe" class="team-member-img">
+                        <h3>Enzo Godoy</h3>
+                        <p class="text-muted">UX/UI Designer</p>
+                        <p>Responsável pelo design de interface e experiência do usuário.</p>
+                        <div class="team-member-social">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="/static/img/ana.jpg"" alt="Membro da Equipe" class="team-member-img">
+                        <h3>Ana Carolina Albi</h3>
+                        <p class="text-muted">Especialista em Dados</p>
+                        <p>Focado em análise de dados e visualização de informações.</p>
+                        <div class="team-member-social">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<section class="tech-stack">
+    <div class="container">
+        <h2 class="text-center mb-5">Nossa Tecnologia</h2>
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fas fa-globe fa-1x"></i></div>
+                    <h4>Web</h4>
+                    <p>HTML5, CSS3, JavaScript</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fab fa-python fa-1x"></i></div>
+                    <h4>Backend</h4>
+                    <p>Python, Flask</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fas fa-chart-bar fa-1x"></i></div>
+                    <h4>Visualização</h4>
+                    <p>Chart.js, Heatmap.js</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="fas fa-lock fa-1x"></i></div>
+                    <h4>Segurança</h4>
+                    <p>Autenticação e Criptografia</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    </section>
+</main>
+{% endblock %}
