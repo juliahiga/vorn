@@ -1,40 +1,72 @@
--- Criação das tabelas para o sistema HealthGrid
+-- Criação das tabelas para o projeto Presságios do Ragnarok
 
--- Tabela de setores do hospital
-CREATE TABLE IF NOT EXISTS setores_hospital (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    setor VARCHAR(100) NOT NULL,
-    capacidade_maxima INT NOT NULL,
-    descricao TEXT
+-- Tabela de Usuários
+CREATE TABLE Usuarios (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha_hash VARCHAR(255) NOT NULL, -- Sempre armazene senhas com hash!
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabela de pacientes
-CREATE TABLE IF NOT EXISTS pacientes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(200) NOT NULL,
-    data_nascimento DATE,
-    status ENUM('internado', 'alta', 'transferido') NOT NULL DEFAULT 'internado'
+-- Tabela de Campanhas
+CREATE TABLE Campanhas (
+    id_campanha INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(150) NOT NULL,
+    descricao TEXT,
+    sistema_jogo VARCHAR(50),
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    -- Chave Estrangeira que conecta a campanha ao seu mestre na tabela Usuarios
+    id_mestre INT NOT NULL,
+    FOREIGN KEY (id_mestre) REFERENCES Usuarios(id_usuario)
+        ON DELETE RESTRICT -- Impede que um usuário seja deletado se ele for mestre de uma campanha ativa
+        ON UPDATE CASCADE
 );
 
--- Tabela de atendimentos
-CREATE TABLE IF NOT EXISTS atendimentos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    paciente_id INT,
-    data_entrada DATETIME NOT NULL,
-    data_saida DATETIME,
-    tipo_atendimento VARCHAR(100),
-    FOREIGN KEY (paciente_id) REFERENCES pacientes(id)
+-- Tabela de Associação entre Campanhas e Jogadores
+CREATE TABLE Campanha_Jogadores (
+    -- Chave Estrangeira que aponta para a campanha
+    id_campanha INT NOT NULL,
+    FOREIGN KEY (id_campanha) REFERENCES Campanhas(id_campanha)
+        ON DELETE CASCADE -- Se a campanha for deletada, remove os jogadores dela
+        ON UPDATE CASCADE,
+    
+    -- Chave Estrangeira que aponta para o jogador (usuário)
+    id_jogador INT NOT NULL,
+    FOREIGN KEY (id_jogador) REFERENCES Usuarios(id_usuario)
+        ON DELETE CASCADE -- Se o jogador for deletado, ele sai das campanhas
+        ON UPDATE CASCADE,
+    
+    nome_personagem VARCHAR(100),
+    data_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Chave Primária composta para garantir que cada jogador só entre uma vez na campanha
+    PRIMARY KEY (id_campanha, id_jogador)
 );
 
--- Tabela de ocupação de leitos
-CREATE TABLE IF NOT EXISTS ocupacao_leitos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    setor_id INT,
-    paciente_id INT,
-    data_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (setor_id) REFERENCES setores_hospital(id),
-    FOREIGN KEY (paciente_id) REFERENCES pacientes(id)
-);
+-- Exemplos de Uso
+
+INSERT INTO Usuarios (nome, email, senha_hash) VALUES
+('Carlos Silva', 'carlos.mestre@email.com', 'hash_seguro_123'), -- ID 1 (Será o Mestre)
+('Ana Souza', 'ana.player@email.com', 'hash_seguro_456'),    -- ID 2 (Será Jogadora)
+('Bruno Lima', 'bruno.player@email.com', 'hash_seguro_789');   -- ID 3 (Será Jogador)
+
+INSERT INTO Campanhas (nome, sistema_jogo, id_mestre) VALUES
+('O Enigma da Montanha de Gelo', 'D&D 5e', 1);
+
+INSERT INTO Campanha_Jogadores (id_campanha, id_jogador, nome_personagem) VALUES
+(1, 2, 'Lyra, a Elfa Arqueira'),
+(1, 3, 'Grom, o Bárbaro Anão');
+
+SELECT C.nome AS NomeDaCampanha, Mestre.nome AS Mestre, Jogador.nome AS NomeDoJogador, CJ.nome_personagem AS Personagem
+    FROM Campanhas C
+-- Junta com a tabela de usuários para pegar o nome do Mestre
+JOIN Usuarios Mestre ON C.id_mestre = Mestre.id_usuario
+-- Junta com a tabela de ligação para encontrar os IDs dos jogadores
+JOIN Campanha_Jogadores CJ ON C.id_campanha = CJ.id_campanha
+-- Junta novamente com a tabela de usuários para pegar os nomes dos Jogadores
+JOIN Usuarios Jogador ON CJ.id_jogador = Jogador.id_usuario
+WHERE C.id_campanha = 1;
 
 CREATE TABLE IF NOT EXISTS Login (
     id INT PRIMARY KEY AUTO_INCREMENT,

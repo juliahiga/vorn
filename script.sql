@@ -1,78 +1,52 @@
 -- Cria DataBase
 
-Create Database if Not exists AutoSimula DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_0900_ai_ci;
+Create Database if Not exists PressagiosDoRagnarok DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_0900_ai_ci;
 
 -- Usa DataBase
 
-use AutoSimula;
+use PressagiosDoRagnarok;
 
 -- Cria Tabelas
 
-CREATE TABLE Carros (
-    id_carro INT AUTO_INCREMENT PRIMARY KEY,
-    id_combustivel INT,
-    id_localizacao INT,
-    id_fabricante INT,
-    preço float,
-    cilindradas FLOAT,
-    usado BOOLEAN NOT NULL, 
-    quilometragem INT,
-    ano_modelo YEAR NOT NULL,
-    automatico boolean,             
-    versao VARCHAR(100) NOT NULL,
-	modelo VARCHAR(100),
-    FOREIGN KEY (id_combustivel) REFERENCES Combustivel(id_combustivel),
-    FOREIGN KEY (id_localizacao) REFERENCES Localizacao(id_localizacao),
-    foreign key (id_fabricante) references Fabricante(id_fabricante)
+CREATE TABLE Usuarios (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha_hash VARCHAR(255) NOT NULL, -- Sempre armazene senhas com hash!
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Fabricante(
-	id_fabricante INT AUTO_INCREMENT PRIMARY KEY,
-	nome varchar(60)
+-- Tabela de Campanhas
+CREATE TABLE Campanhas (
+    id_campanha INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(150) NOT NULL,
+    descricao TEXT,
+    sistema_jogo VARCHAR(50),
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    -- Chave Estrangeira que conecta a campanha ao seu mestre na tabela Usuarios
+    id_mestre INT NOT NULL,
+    FOREIGN KEY (id_mestre) REFERENCES Usuarios(id_usuario)
+        ON DELETE RESTRICT -- Impede que um usuário seja deletado se ele for mestre de uma campanha ativa
+        ON UPDATE CASCADE
 );
 
-CREATE  TABLE Localizacao(
-    id_localizacao INT AUTO_INCREMENT PRIMARY KEY,
-    estado CHAR(2) NOT NULL,
-    cidade VARCHAR(100) NOT NULL
+-- Tabela de Associação entre Campanhas e Jogadores
+CREATE TABLE Campanha_Jogadores (
+    -- Chave Estrangeira que aponta para a campanha
+    id_campanha INT NOT NULL,
+    FOREIGN KEY (id_campanha) REFERENCES Campanhas(id_campanha)
+        ON DELETE CASCADE -- Se a campanha for deletada, remove os jogadores dela
+        ON UPDATE CASCADE,
+    
+    -- Chave Estrangeira que aponta para o jogador (usuário)
+    id_jogador INT NOT NULL,
+    FOREIGN KEY (id_jogador) REFERENCES Usuarios(id_usuario)
+        ON DELETE CASCADE -- Se o jogador for deletado, ele sai das campanhas
+        ON UPDATE CASCADE,
+    
+    nome_personagem VARCHAR(100),
+    data_entrada DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Chave Primária composta para garantir que cada jogador só entre uma vez na campanha
+    PRIMARY KEY (id_campanha, id_jogador)
 );
-
-CREATE TABLE combustivel(
-id_combustivel INT AUTO_INCREMENT PRIMARY KEY,
-descricao VARCHAR(50) NOT NULL  #gasolina, alcool, flex, diesel, eletrico
-);
-
--- Querys para pegar os dados
-
--- Quantidade de carros por fabricante (gráfico de barras):
-SELECT f.nome AS fabricante, COUNT(*) AS quantidade
-FROM Carros c
-JOIN Fabricante f ON c.id_fabricante = f.id_fabricante
-GROUP BY f.nome
-ORDER BY quantidade DESC;
-
--- Média de quilometragem por ano de modelo (gráfico de linhas):
-SELECT ano_modelo, AVG(quilometragem) 
-FROM Carros
-GROUP BY ano_modelo
-ORDER BY ano_modelo;
-
--- Média de preço por fabricante (gráfico de barras):
-SELECT f.nome AS fabricante, AVG(c.preco) AS media_preco
-FROM Carros c
-JOIN Fabricante f ON c.id_fabricante = f.id_fabricante
-GROUP BY f.nome
-ORDER BY media_preco DESC;
-
--- Média de preço por tipo de combustível (gráfico de barras):
-SELECT c.id_combustivel, AVG(c.preco) AS media_preco
-FROM Carros c
-JOIN Combustivel co ON c.id_combustivel = co.id_combustivel
-GROUP BY c.id_combustivel
-ORDER BY media_preco DESC;
-
--- Média de preço por ano de modelo (gráfico de linhas):
-SELECT ano_modelo, AVG(preco) AS media_preco
-FROM Carros
-GROUP BY ano_modelo
-ORDER BY ano_modelo;
