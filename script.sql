@@ -21,7 +21,7 @@ CREATE TABLE Campanhas (
     id_campanha INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(150) NOT NULL,
     descricao TEXT,
-    sistema_jogo VARCHAR(50),
+--    sistema_jogo VARCHAR(50),
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     -- Chave Estrangeira que conecta a campanha ao seu mestre na tabela Usuarios
     id_mestre INT NOT NULL,
