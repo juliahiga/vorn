@@ -46,3 +46,27 @@ CREATE TABLE Campanha_Jogadores (
     -- Chave Primária composta para garantir que cada jogador só entre uma vez na campanha
     PRIMARY KEY (id_campanha, id_jogador)
 );
+
+-- Tabela de fichas de personagens
+CREATE TABLE Fichas_Personagens (
+    id_ficha INT PRIMARY KEY AUTO_INCREMENT,
+    id_jogador INT NOT NULL,
+    FOREIGN KEY (id_jogador) REFERENCES Usuarios(id_usuario)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    id_campanha INT NOT NULL,
+    FOREIGN KEY (id_campanha) REFERENCES Campanhas(id_campanha)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    nome_personagem VARCHAR(100) NOT NULL,
+    classe VARCHAR(50),
+    nivel INT DEFAULT 1,
+    -- atributos JSON, -- Armazena atributos como força, destreza, etc. em formato
+    forca INT NOT NULL DEFAULT 0,
+    destreza INT NOT NULL DEFAULT 0,
+    constituicao INT NOT NULL DEFAULT 0,
+    inteligencia INT NOT NULL DEFAULT 0,
+    sabedoria INT NOT NULL DEFAULT 0,
+    carisma INT NOT NULL DEFAULT 0,
+    -- pericias? Armazenar em JSON?
+);
