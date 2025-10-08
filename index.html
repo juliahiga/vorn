@@ -1,11 +1,274 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORN</title>
+    <title>VORN - Sistema de Fichas Nórdico</title>
+    <link rel="stylesheet" href="static/css/estilo.css">
+    <link rel="stylesheet" href="static/css/nordic-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>teste</h1>
+    <!-- Navigation -->
+    <nav class="nordic-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-hammer"></i>
+                <span class="brand-text">VORN</span>
+                <span class="brand-subtitle">Sistema de Fichas</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#fichas">Fichas</a></li>
+                <li><a href="#campanhas">Campanhas</a></li>
+                <li><a href="#ferramentas">Ferramentas</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-nordic">
+        <div class="hero-background">
+            <div class="nordic-pattern"></div>
+        </div>
+        <div class="hero-content-wrapper">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Desperte o</span>
+                    <span class="title-line accent">Guerreiro Nórdico</span>
+                    <span class="title-line">em você</span>
+                </h1>
+                <p class="hero-description">
+                    Sistema completo de fichas digitais inspirado na mitologia nórdica. 
+                    Gerencie seus personagens, campanhas e aventuras com a força dos antigos deuses.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary nordic">
+                        <i class="fas fa-sword"></i>
+                        Criar Ficha
+                    </button>
+                    <button class="btn-secondary nordic">
+                        <i class="fas fa-shield-alt"></i>
+                        Explorar Campanhas
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="rune-circle">
+                    <div class="rune-symbols">
+                        <span class="rune">ᚠ</span>
+                        <span class="rune">ᚢ</span>
+                        <span class="rune">ᚦ</span>
+                        <span class="rune">ᚨ</span>
+                        <span class="rune">ᚱ</span>
+                        <span class="rune">ᚲ</span>
+                        <span class="rune">ᚷ</span>
+                        <span class="rune">ᚹ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="fichas" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ferramentas do Valhalla</h2>
+                <p class="section-subtitle">Recursos poderosos para suas aventuras épicas</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h3>Fichas Digitais</h3>
+                    <p>Acesso rápido e simplificado a todas as informações de sua ficha. Role dados com um único clique e foque no que importa: se divertir!</p>
+                    <div class="feature-decoration"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Gestão de Grupo</h3>
+                    <p>Seus guerreiros em um só lugar! Gerencie suas fichas, resultados de dados e ferramentas exclusivas para campanhas épicas.</p>
+                    <div class="feature-decoration"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Ferramentas do Jarl</h3>
+                    <p>Recursos exclusivos para mestres. Escudo do mestre, gestão de NPCs e todas as ferramentas para conduzir aventuras memoráveis.</p>
+                    <div class="feature-decoration"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Criações Personalizadas</h3>
+                    <p>Homebrew nórdico! Crie suas próprias runas, classes e magias inspiradas na mitologia escandinava.</p>
+                    <div class="feature-decoration"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaigns Section -->
+    <section id="campanhas" class="campaigns-section">
+        <div class="container">
+            <div class="campaigns-content">
+                <div class="campaigns-text">
+                    <h2>Sagas Épicas Aguardam</h2>
+                    <p>Embarque em aventuras dignas dos grandes heróis nórdicos. Crie campanhas em segundos, adicione seus guerreiros e eleve suas aventuras ao nível dos deuses.</p>
+                    <div class="campaign-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1.2K+</span>
+                            <span class="stat-label">Aventureiros</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">450+</span>
+                            <span class="stat-label">Campanhas Ativas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Satisfação</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="campaigns-visual">
+                    <div class="campaign-card-preview">
+                        <div class="preview-header">
+                            <h4>⚔️ As Runas Perdidas</h4>
+                            <span class="campaign-status">Ativa</span>
+                        </div>
+                        <div class="preview-players">
+                            <div class="player-avatar">
+                                <i class="fas fa-user-shield"></i>
+                                <span>Bjorn</span>
+                            </div>
+                            <div class="player-avatar">
+                                <i class="fas fa-user-ninja"></i>
+                                <span>Astrid</span>
+                            </div>
+                            <div class="player-avatar">
+                                <i class="fas fa-user-plus"></i>
+                                <span>+2</span>
+                            </div>
+                        </div>
+                        <div class="preview-progress">
+                            <span>Próxima Sessão: Sexta, 20:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="ferramentas" class="tools-section">
+        <div class="container">
+            <div class="section-header centered">
+                <h2 class="section-title">Arsenal do Guerreiro</h2>
+                <p class="section-subtitle">Ferramentas forjadas pelos mestres artesãos de Asgard</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-dice-d20"></i>
+                    </div>
+                    <h4>Dados Rúnicos</h4>
+                    <p>Sistema de rolagem avançado com dados customizáveis</p>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-map"></i>
+                    </div>
+                    <h4>Mapas Interativos</h4>
+                    <p>Explore os nove reinos com mapas detalhados</p>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h4>Biblioteca de Lore</h4>
+                    <p>Acesso completo à mitologia e regras nórdicas</p>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h4>Chat de Mesa</h4>
+                    <p>Comunicação em tempo real durante as sessões</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Junte-se aos Guerreiros do Norte</h2>
+                <p>Torne-se parte da guilda mais épica e tenha acesso antecipado a todas as novidades do VORN.</p>
+                <button class="btn-cta">
+                    <i class="fas fa-axe-battle"></i>
+                    Apoiar o Projeto
+                </button>
+            </div>
+            <div class="cta-decoration">
+                <div class="viking-ship">
+                    <i class="fas fa-ship"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="nordic-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <i class="fas fa-hammer"></i>
+                        <span>VORN</span>
+                    </div>
+                    <p>Sistema de fichas inspirado na força e sabedoria dos antigos nórdicos.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Produto</h4>
+                        <a href="#fichas">Fichas Digitais</a>
+                        <a href="#campanhas">Campanhas</a>
+                        <a href="#ferramentas">Ferramentas</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Comunidade</h4>
+                        <a href="#">Discord</a>
+                        <a href="#">GitHub</a>
+                        <a href="#">Suporte</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Legal</h4>
+                        <a href="#">Privacidade</a>
+                        <a href="#">Termos</a>
+                        <a href="#">Contato</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VORN. Forjado com ⚒️ pelos artesãos do código.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/nordic-script.js"></script>
 </body>
 </html>
