@@ -6,10 +6,13 @@ Create Database if Not exists PressagiosDoRagnarok DEFAULT CHARACTER SET utf8mb4
 
 use PressagiosDoRagnarok;
 
+-- MUDAR AS TABELAS DE ACORDO COM QUE O HUMBERTO FALOU
+
+
 -- Cria Tabelas
 
 CREATE TABLE Usuarios (
-    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT, -- Trocar por UUID
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     senha_hash VARCHAR(255) NOT NULL,
@@ -18,7 +21,7 @@ CREATE TABLE Usuarios (
 
 -- Tabela de Campanhas
 CREATE TABLE Campanhas (
-    id_campanha INT PRIMARY KEY AUTO_INCREMENT,
+    id_campanha INT PRIMARY KEY AUTO_INCREMENT, -- Trocar por UUID
     nome VARCHAR(150) NOT NULL,
     descricao TEXT,
 --    sistema_jogo VARCHAR(50), (Opções pré prontas?)
@@ -31,7 +34,7 @@ CREATE TABLE Campanhas (
 
 -- Tabela de Associação entre Campanhas e Jogadores
 CREATE TABLE Campanha_Jogadores (
-    id_campanha INT NOT NULL,
+    id_campanha INT NOT NULL, -- Trocar por UUID
     FOREIGN KEY (id_campanha) REFERENCES Campanhas(id_campanha)
         ON DELETE CASCADE -- Se a campanha for deletada, remove os jogadores dela
         ON UPDATE CASCADE,
@@ -49,7 +52,7 @@ CREATE TABLE Campanha_Jogadores (
 
 -- Tabela de fichas de personagens
 CREATE TABLE Fichas_Personagens (
-    id_ficha INT PRIMARY KEY AUTO_INCREMENT,
+    id_ficha INT PRIMARY KEY AUTO_INCREMENT, -- Trocar por UUID
     id_jogador INT NOT NULL,
     FOREIGN KEY (id_jogador) REFERENCES Usuarios(id_usuario)
         ON DELETE CASCADE
